@@ -55,7 +55,7 @@ router.get("/clubs/:players", async (req, res) => {
         const response = await openai.chat.completions.create({
             model: 'gpt-4',
             messages: [
-                { role: 'system', content: `With the provided players, ONLY reccomend 5 clubs (NOT NATIONAL) to follow in this format EX: club1*league1*club2*league2*...` },
+                { role: 'system', content: `With the provided players, ONLY recommend 5 unique clubs (NOT NATIONAL). Stop generating teams early if there are only duplicates. Respond in this format EX: club1*league1*club2*league2*...` },
                 { role: 'user', content: allPlayers }
             ],
             max_tokens: 1000,
