@@ -35,6 +35,6 @@ app.use("/api", apiRouter);
 const db = require('./models')
 
 db.sequelize.sync().then(() => {
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, '0.0.0.0', () => {
     });
 })
