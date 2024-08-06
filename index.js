@@ -11,9 +11,13 @@ const app = express()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
-// Setting up CORS
-const allowedOrigins = [process.env.FIREBASE_URL, process.env.FIREBASE_URL_TOO, process.env.DB_URL_CORS_PRODUCTION, process.env.DB_HOST];
-app.use(cors());
+// Setting up CORS and allowing Origins configuration
+const allowedOrigins = [process.env.FIREBASE_URL, process.env.FIREBASE_URL_TOO];
+
+app.use(cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "DELETE", "PATCH"]
+}));
 
 // Routers
 const userRouter = require('./routes/Users');
